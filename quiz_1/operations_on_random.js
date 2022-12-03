@@ -1,12 +1,12 @@
 // create a class
 export class OperationsOnRandomIntegers {
     // create a constructor
-    constructor(x) {
+    constructor(x=[]) {
         // create a variable to hold the sum
         this.sum = 0;
         // create a variable to hold the index
         this.i = 0;
-        // create a variable to hold the random integers
+        // create an array to hold the random integers
         this.x = x;
     }
     // create a method to sum the random integers using a for loop

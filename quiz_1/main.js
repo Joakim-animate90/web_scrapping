@@ -1,8 +1,8 @@
 import OperationsOnRandomIntegers from './operations_on_random.js';
-import  randomIntegers  from './random_integers.js';
+import  randomIntegers from './func_random_integers.js';
 
 // create a variable to hold the random integers
-const x = randomIntegers(5);
+const x = randomIntegers(100);
 // create a variable to hold the operations
 console.log(x)
 const operations = new OperationsOnRandomIntegers(x);
