@@ -18,7 +18,9 @@
   },
   "homepage": "https://github.com/Joakim-animate90/web_scrapping#readme",
   "dependencies": {
+    "cheerio": "^1.0.0-rc.12",
     "fs": "0.0.1-security",
+    "moment": "^2.29.4",
     "node-fetch": "^3.3.0"
   }
 }
