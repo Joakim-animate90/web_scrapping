@@ -44,7 +44,7 @@ const scrape = async () => {
 
                     }
                     console.log('success');
-                console.log(posts);
+
                 });
 
         } else {
@@ -66,7 +66,7 @@ const scrape = async () => {
             }
         }
     // log the metadata
-    console.log('starting heree>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>')
+
     console.log(posts);
     // log the number of posts
     console.log(posts.length);

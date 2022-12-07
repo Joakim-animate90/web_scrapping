@@ -1,4 +1,14 @@
 import cheerio from 'cheerio';
+import moment from 'moment';
+
+
+
+const momentDate = (date) => {
+    // convert 05 Dec 2022 to moment to iso format
+    const momentDate = moment(date, 'DD MMM YYYY').format('YYYY-MM-DD');
+    return momentDate;
+
+}
 
 export default function cheerioHelper(html, posts) {
     const $ = cheerio.load(html);
@@ -16,9 +26,10 @@ export default function cheerioHelper(html, posts) {
         }).get();
         // find date and convert to moment js and add to object post
         const date = $(element).find('.date-delivered').map((index, element) => {
+            //convert date to moment js to use iso format
             return {
-                [$(element).find('span').text().replace(/(\r\n|\n|\r)/gm, "")]: $(element).text().replace(/(\r\n|\n|\r)/gm, "")
-            };
+                [$(element).find('span').text().replace(':', '')]: momentDate($(element).find('span').remove() ? $(element).text() : null),
+            }
         }).get();
         // find the case number and add to object post
         const caseNumber = $(element).find('.case-number').map((index, element) => {
@@ -30,12 +41,12 @@ export default function cheerioHelper(html, posts) {
 
         const title = $(element).find('h2').map((index, element) => {
             return {
-                title: $(element).text().replace(/(\r\n|\n|\r)/gm, "")
+                "title": $(element).text().replace(/(\r\n|\n|\r)/gm, "")
             };
         }).get();
         const link = $(element).find('a').map((index, element) => {
             return {
-                link: $(element).attr('href')
+                "link": $(element).attr('href')
             };
 
         }).get();
