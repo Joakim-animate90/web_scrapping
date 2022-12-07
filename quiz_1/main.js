@@ -19,7 +19,7 @@ console.log('The sum using foreach='+operations.sumRandomIntegersEach());
 // perform the average
 console.log('The average='+operations.average());
 //find the mode
-console.log('The mode='+operations.mode());
+console.log('The mode='+operations.mode()[0] + ' occurs ' + operations.mode()[1] + ' times');
 //find the median
 console.log('The median='+operations.median());
 //find unique elements

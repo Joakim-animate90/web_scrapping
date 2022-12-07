@@ -12,7 +12,7 @@ export class OperationsOnRandomIntegers {
     // create a method to sum the random integers using a for loop
     sumRandomIntegersFor() {
         // loop through the random integers and sum them
-        for (this.i = 0; this.i < this.x.length; this.i++) {
+        for (let i = 0; this.i < this.x.length; this.i++) {
 
             this.sum += this.x[this.i];
         }
@@ -63,6 +63,39 @@ export class OperationsOnRandomIntegers {
 
 
     }
+    // create a method to perform the mode of the sum using map
+    mode(){
+        // create an object
+        let modeObj = {};
+        // loop through the random integers
+        this.x.forEach((element) => {
+            // if the element is not in the object
+            if(!modeObj[element]){
+                // set the element in the object to 0
+                modeObj[element] = 0;
+            }
+            // increment the element in the object
+            modeObj[element]++;
+
+        });
+        // create a variable to hold the mode
+        let biggestValue = -1;
+        let biggestKey = -1;
+        // loop through the object
+        Object.keys(modeObj).forEach((key) => {
+            // if the value is bigger than the biggest value
+            if(modeObj[key] > biggestValue){
+                // set the biggest value to the value
+                biggestValue = modeObj[key];
+                // set the biggest key to the key
+                biggestKey = key;
+            }
+        });
+        // return the mode
+        return biggestKey;
+        }
+
+
 
 
     // create a method to perform the average of the sum
@@ -81,37 +114,8 @@ export class OperationsOnRandomIntegers {
         // return the median
         return median;
     }
-    // create a method to perform the mode of the sum
-    mode() {
-        // create a variable to hold the mode
-        let mode = 0;
-        // create a variable to hold the count
-        let count = 0;
-        // create a variable to hold the mode count
-        let modeCount = 0;
-        // loop through the random integers
-        this.x.forEach((element) => {
-            // if the element is equal to the count
-            if (element === count) {
-                // increment the mode count
-                modeCount++;
-            } else {
-                // reset the mode count
-                modeCount = 1;
-                // set the count to the element
-                count = element;
-            }
-            // if the mode count is greater than the mode
-            if (modeCount > mode) {
-                // set the mode to the mode count
-                mode = modeCount;
-                // set the mode to the count
-                mode = count;
-            }
-        });
-        // return the mode
-        return mode;
-    }
+    //create a met
+
     //create a method to find all unique elements in the array
     uniqueElements() {
         //create a variable to hold the unique elements
@@ -157,7 +161,7 @@ export class OperationsOnRandomIntegers {
             //if the element is smaller than the index
             if (element < index) {
                 //push the element and index to the smaller than index
-                smallerThanIndex.push(element, index);
+                smallerThanIndex.push(element);
             }
         });
         //return the smaller than index
