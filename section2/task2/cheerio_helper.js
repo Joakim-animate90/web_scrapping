@@ -36,7 +36,10 @@ export default function cheerioHelper(html, records, page) {
             //click page to download pdf file using async and await
             //use async function
             async function downloadFile() {
-                await page.click(`#formularioConsultar\\:dgArchivos\\:0\\:j_idt${148 + 2}`);
+                let number = 150;
+
+                await page.click(`#formularioConsultar\\:dgArchivos\\:0\\:j_idt${number}`);
+
 
             }
 
