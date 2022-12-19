@@ -9,7 +9,7 @@ const momentDate = (date) => {
 }
 
 export default function cheerioHelp(html, records) {
-     console.log('cheerioHelp');
+    console.log('cheerioHelp');
     const $ = cheerio.load(html);
     $('.ui-scrollpanel-content').each((index, element) => {
         const record = {};
@@ -25,7 +25,7 @@ export default function cheerioHelp(html, records) {
                         record['date'] = momentDate($(element).next().find('span').text().trim());
 
                     }
-                    record[$(element).find('span').text().replace(':','').trim()] = $(element).next().find('span').text().trim();
+                    record[$(element).find('span').text().replace(':', '').trim()] = $(element).next().find('span').text().trim();
                     // return a json object
 
                     return record;
@@ -37,10 +37,8 @@ export default function cheerioHelp(html, records) {
             //use async function
 
 
-
-
         });
-      print('i am hereeeeeeeeeeeeeeeeeeeeee')
+        print('i am hereeeeeeeeeeeeeeeeeeeeee')
 
         records.push(record)
         console.log(records);
