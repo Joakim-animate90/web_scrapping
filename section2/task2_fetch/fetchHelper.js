@@ -27,13 +27,13 @@ const options = {
 export default async function fetchHelper() {
 
 
-    fetchCookie(url, options).then(async (res) => {
+    await fetchCookie(url, options).then(async (res) => {
 
         console.log('first fetch done');
         options.headers['Cookie'] = res.headers.get('set-cookie');
 
 
-        fetchCookie('https://ratioiurisprudentia.ramajudicial.gov.co/Jurisprudencia/faces/consulta/ConsultaCorporacion.xhtml', options).then(async (res) => {
+        await fetchCookie('https://ratioiurisprudentia.ramajudicial.gov.co/Jurisprudencia/faces/consulta/ConsultaCorporacion.xhtml', options).then(async (res) => {
             console.log('second fetch done');
 
             //use jsdom to get the form element
@@ -59,7 +59,6 @@ export default async function fetchHelper() {
             //post the form
             return fetchCookie(form.action, options).then(async res => await res.text()).then(async body => {
                 console.log('second fetch done');
-                console.log('awaiting for 5 seconds');
 
 
 
@@ -72,6 +71,7 @@ export default async function fetchHelper() {
 
 
     });
+    console.log(options);
 
 }
 
