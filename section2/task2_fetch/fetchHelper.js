@@ -1,10 +1,10 @@
 import nodeFetch, {FormData} from 'node-fetch';
 import makeFetchCookie from 'fetch-cookie';
 import jsdom from 'jsdom';
-
-const {JSDOM} = jsdom;
 import cheerioHelp from './cheerioHelp.js';
 
+
+const {JSDOM} = jsdom;
 const formelementId = 'formularioConsultar';
 const url = 'https://ratioiurisprudentia.ramajudicial.gov.co/Jurisprudencia/';
 const fetchCookie = makeFetchCookie(nodeFetch, new makeFetchCookie.toughCookie.CookieJar());
@@ -14,13 +14,11 @@ const records = [];
 const options = {
     credentials: 'include',
     headers: {
-
         'Content-Type': 'application/x-www-form-urlencoded',
         'User-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.3',
         'Referer': url,
         'Upgrade-Insecure-Requests': '1',
     }
-
 }
 
 
@@ -60,16 +58,9 @@ export default async function fetchHelper() {
             return fetchCookie(form.action, options).then(async res => await res.text()).then(async body => {
                 console.log('second fetch done');
 
-
-
                 cheerioHelp(body, records);
-
             });
-
-
         });
-
-
     });
     console.log(options);
 
