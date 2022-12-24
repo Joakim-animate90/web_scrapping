@@ -1,4 +1,3 @@
-// import new cheerio which is not deprecated and use it to load the html
 import cheerio from 'cheerio'
 import moment from 'moment'
 
@@ -9,8 +8,7 @@ const momentDate = (date) => {
   return momentDate
 }
 
-export default function cheerioHelpRemoveTypeHiddenJurisPrudencia (html) {
-  console.log('cheerioHelp')
+export function cheerioViewStateRemoveHiddenJurisPrudencia (html) {
   let viewState
   // Extract the value of the javax.faces.ViewState field using cheerio
   const $ = cheerio.load(html)
@@ -22,6 +20,23 @@ export default function cheerioHelpRemoveTypeHiddenJurisPrudencia (html) {
       // remove the input attribute type hidden
       $(element).removeAttr('type')
 
+      if ($(element).attr('name') === 'javax.faces.ViewState') {
+        viewState = $(element).attr('value')
+      }
+    })
+  })
+  return viewState
+}
+export function cheerioViewStateRemoveHiddenAvazanda (html) {
+  let viewState
+  // Extract the value of the javax.faces.ViewState field using cheerio
+  const $ = cheerio.load(html)
+  // find a form id formularioConsultar using cheerio
+  $('#formularioConsultar').each((index, element) => {
+    // find input field with name javax.faces.ViewState
+    $(element).find('input').each((index, element) => {
+      // remove the input attribute type hidden
+      $(element).removeAttr('type')
       if ($(element).attr('name') === 'javax.faces.ViewState') {
         viewState = $(element).attr('value')
       }
