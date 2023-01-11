@@ -45,3 +45,31 @@ export function cheerioViewStateRemoveHiddenAvazanda (html) {
   return viewState
 }
 
+export default function cheerioHelperGetData (html, records) {
+  const $ = cheerio.load(html)
+  console.log('Extracting data from html')
+  $('.ui-scrollpanel-content').each((index, element) => {
+    const record = {}
+
+    // find every tr
+    $(element).find('tr').each((index, element) => {
+      // find every td and map the first td to the key and the second td to the value
+      // eslint-disable-next-line array-callback-return
+      $(element).find('td').map((index, element) => {
+        if (index === 0) {
+          // if key is date, convert to moment js
+          if ($(element).text().trim() === 'Fecha :') {
+            record.date = momentDate($(element).next().find('span').text().trim())
+          }
+          record[$(element).find('span').text().replace(':', '').trim()] = $(element).next().find('span').text().trim()
+          // return a json object
+
+          return record
+        } else { /* empty */ }
+      })
+    })
+
+    records.push(record)
+    console.log(records)
+  })
+}

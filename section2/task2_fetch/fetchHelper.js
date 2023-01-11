@@ -1,9 +1,11 @@
 import fetch from 'node-fetch'
 import makeFetchCookie from 'fetch-cookie'
-import {
+// eslint-disable-next-line no-unused-vars
+import cheerioHelperGetData, {
   cheerioViewStateRemoveHiddenJurisPrudencia,
   cheerioViewStateRemoveHiddenAvazanda
 } from './cheerioHelp.js'
+import util from 'util'
 import {
   javaxPartialAjax, javaxPartialBehaviorEvent,
   javaxPartialEvent,
@@ -15,6 +17,8 @@ import {
 const fetchCookie = makeFetchCookie(fetch)
 const baseUrl = 'https://ratioiurisprudentia.ramajudicial.gov.co/Jurisprudencia/'
 let cookies = ''
+// eslint-disable-next-line no-unused-vars
+const records = []
 
 export default async function fetchHelper () {
   const options = {
@@ -131,7 +135,7 @@ export default async function fetchHelper () {
                 }
                 const formData = new URLSearchParams()
                 formData.append(javaxViewState, viewState)
-                formData.append('formularioConsultar:dtCampos:7:calInicio_input', '03/12/2022')
+                formData.append('formularioConsultar:dtCampos:7:calInicio_input', '02/12/2022')
                 formData.append(javaxPartialAjax, 'true')
                 formData.append(javaxPartialSource, 'formularioConsultar:dtCampos:7:calInicio')
                 formData.append(javaxPartialExecute, 'formularioConsultar:dtCampos:7:calInicio')
@@ -193,7 +197,9 @@ export default async function fetchHelper () {
                         options.headers.Referer = `${baseUrl}faces/consulta/ConsultaCorporacion.xhtml`
                         return fetchCookie(`${baseUrl}faces/consulta/ConsultaCorporacion.xhtml`, options)
                           .then(res => res).then(async body => {
-                            console.log(await body.text())
+                            const html = await body.html()
+                            cheerioHelperGetData(html, records)
+                            console.log(util.inspect(await body.text(), { depth: null, colors: true }))
                             // check if response involves set-cookie header
                             if (body.headers.get('set-cookie')) {
                               // Store the new cookie(s) in a variable
@@ -215,8 +221,6 @@ export default async function fetchHelper () {
                             return fetchCookie(`${baseUrl}faces/consulta/ConsultaCorporacion.xhtml`, options)
                               .then(res => res).then(async body => {
                                 console.log('Reached the end of the chain')
-
-                                console.log(await body.text())
                               })
                           })
                       })

@@ -18,9 +18,26 @@
   },
   "homepage": "https://github.com/Joakim-animate90/web_scrapping#readme",
   "dependencies": {
+    "@axe-core/pupeeteer": "^4.0.0-alpha.13",
+    "@axe-core/puppeteer": "^4.5.2",
     "cheerio": "^1.0.0-rc.12",
+    "fetch-cookie": "^2.1.0",
+    "file-cookie-store": "^0.2.1",
     "fs": "0.0.1-security",
+    "jsdom": "^20.0.3",
     "moment": "^2.29.4",
-    "node-fetch": "^3.3.0"
+    "node-fetch": "^3.3.0",
+    "node-fetch-cookies": "^2.0.4",
+    "puppeteer": "^19.4.0",
+    "tough-cookie": "^4.1.2",
+    "tough-cookie-filestore2": "^1.0.0",
+    "xhr2": "^0.2.1"
+  },
+  "devDependencies": {
+    "eslint": "^8.30.0",
+    "eslint-config-standard": "^17.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-n": "^15.6.0",
+    "eslint-plugin-promise": "^6.1.1"
   }
 }
